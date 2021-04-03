@@ -16,7 +16,6 @@ import reactor.util.Loggers;
 import java.util.*;
 
 import static io.r2dbc.spi.IsolationLevel.*;
-import static io.r2dbc.spi.IsolationLevel.SERIALIZABLE;
 
 public class ClientWrapper {
 

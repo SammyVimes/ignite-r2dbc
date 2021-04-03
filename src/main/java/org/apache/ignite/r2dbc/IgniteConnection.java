@@ -1,14 +1,10 @@
 package org.apache.ignite.r2dbc;
 
-import io.r2dbc.spi.*;
-import org.apache.ignite.Ignite;
+import io.r2dbc.spi.Connection;
+import io.r2dbc.spi.ConnectionMetadata;
+import io.r2dbc.spi.IsolationLevel;
+import io.r2dbc.spi.ValidationDepth;
 import org.apache.ignite.IgniteException;
-import org.apache.ignite.client.ClientTransaction;
-import org.apache.ignite.client.IgniteClient;
-import org.apache.ignite.internal.IgniteEx;
-import org.apache.ignite.transactions.Transaction;
-import org.apache.ignite.transactions.TransactionConcurrency;
-import org.apache.ignite.transactions.TransactionIsolation;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,7 +14,7 @@ import reactor.util.Loggers;
 import java.util.Objects;
 import java.util.function.Function;
 
-import static io.r2dbc.spi.IsolationLevel.*;
+import static io.r2dbc.spi.IsolationLevel.READ_UNCOMMITTED;
 
 public class IgniteConnection implements Connection {
 

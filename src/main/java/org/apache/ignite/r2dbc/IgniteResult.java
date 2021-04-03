@@ -4,7 +4,6 @@ import io.r2dbc.spi.Result;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import org.apache.ignite.IgniteException;
-import org.apache.ignite.cache.query.FieldsQueryCursor;
 import org.apache.ignite.internal.processors.cache.QueryCursorImpl;
 import org.jetbrains.annotations.Nullable;
 import reactor.core.publisher.Flux;

@@ -58,11 +58,6 @@
         </license>
     </licenses>
 
-    <scm>
-        <connection>scm:git:https://github.com/r2dbc/r2dbc-h2</connection>
-        <url>https://github.com/r2dbc/r2dbc-h2</url>
-    </scm>
-
     <developers>
         <developer>
             <name>Semyon Danilov</name>
@@ -228,7 +223,7 @@
                         </manifest>
                         <manifestEntries>
                             <R2DBC-Specification-Version>${r2dbc-spi.version}</R2DBC-Specification-Version>
-                            <Automatic-Module-Name>r2dbc.h2</Automatic-Module-Name>
+                            <Automatic-Module-Name>ignite.r2dbc</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -256,29 +251,6 @@
                                 </requireReleaseDeps>
                             </rules>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <excludePackageNames>
-                        io.r2dbc.h2.client,io.r2dbc.h2.util
-                    </excludePackageNames>
-                    <links>
-                        <link>https://r2dbc.io/spec/${r2dbc-spi.version}/api/</link>
-                        <link>https://projectreactor.io/docs/core/release/api/</link>
-                        <link>https://www.reactive-streams.org/reactive-streams-1.0.2-javadoc/</link>
-                    </links>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -447,89 +419,6 @@
                     <url>https://jitpack.io</url>
                 </repository>
             </repositories>
-        </profile>
-
-        <profile>
-            <id>snapshot</id>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>sonatype</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-
-        <profile>
-            <id>central</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-
-                        <!-- Sign JARs -->
-
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <version>1.6</version>
-                            <executions>
-                                <execution>
-                                    <id>sign-artifacts</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>sign</goal>
-                                    </goals>
-                                    <configuration>
-                                        <gpgArguments>
-                                            <arg>--pinentry-mode</arg>
-                                            <arg>loopback</arg>
-                                        </gpgArguments>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-
-                        <!-- Deploy to Sonatype OSS Nexus -->
-
-                        <plugin>
-                            <groupId>org.sonatype.plugins</groupId>
-                            <artifactId>nexus-staging-maven-plugin</artifactId>
-                            <version>1.6.8</version>
-                            <extensions>true</extensions>
-                            <configuration>
-                                <serverId>sonatype</serverId>
-                                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                                <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                                <keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
-                                <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-
-                </pluginManagement>
-
-                <plugins>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                    </plugin>
-
-                </plugins>
-
-            </build>
-
-            <distributionManagement>
-                <repository>
-                    <id>sonatype</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
-
         </profile>
 
     </profiles>

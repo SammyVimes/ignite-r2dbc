@@ -1,11 +1,8 @@
 package org.apache.ignite.r2dbc;
 
-import io.r2dbc.spi.Result;
 import io.r2dbc.spi.Statement;
-import org.apache.ignite.IgniteException;
 import org.apache.ignite.internal.processors.cache.QueryCursorImpl;
 import org.jetbrains.annotations.Nullable;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
